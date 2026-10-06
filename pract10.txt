@@ -1,0 +1,234 @@
+Q1)
+
+Rules:
+
+If 𝑥 is a batsman → 𝑥 is a cricketer.
+If 𝑥 is a cricketer → 𝑥 is a sportsman.
+If 𝑥 is a sportsman → 𝑥 is a famous person.
+
+Queries to check:
+
+Is Sachin a cricketer?
+Is Virat a sportsman?
+Is Dhoni a famous person?
+
+Facts:
+
+batsman(Sachin)
+batsman(Virat)
+batsman(Dhoni)
+Logical rules (Prolog-style):
+cricketer(x) :batsman(x).
+sportsman(x) : cricketer(x).
+famous(x) : sportsman(x).
+
+Query Results:
+
+cricketer(Sachin) → True
+sportsman(Virat) → True
+famous(Dhoni) → True
+
+
+
+Q2)
+
+Teacher = Employee = Human = Livingbeing
+
+Rules:
+
+An employee is a human.
+A human is a living being.
+A teacher is an employee.
+
+Queries:
+
+Prove that Anjita is a human.
+Prove that Rahul is a living being.
+Test all humans.
+Prolog-style rules:
+
+prolog
+employee(X) :- teacher(X).
+human(X) :- employee(X).
+livingbeing(X) :- human(X).
+Facts:
+
+prolog
+teacher(rahul).
+teacher(meera).
+teacher(anjita).
+teacher(raj).
+Query Results:
+
+human(anjita) → True
+livingbeing(rahul) → True
+
+
+
+Q3)
+Rules:
+
+If 𝑥 is a student → 𝑥 is a learner.
+If 𝑥 is a learner → 𝑥 is a knowledge seeker.
+If 𝑥 is a knowledge seeker → 𝑥 is a future professional.
+
+Facts:
+
+student(Riya)
+student(Amit)
+student(Sima)
+
+Prolog-style rules:
+
+prolog
+learner(X) :- student(X).
+knowseeker(X) :- learner(X).
+futurepro(X) :- knowseeker(X).
+Query Results:
+
+futurepro(Riya) → True
+futurepro(Amit) → True
+knowseeker(X)
+
+
+
+Q4): Books and Knowledge
+Concept chain:  
+Book → Knowledge Source → Educational Material → Valuable Resource
+
+Entities:
+
+Tommy
+Bobby
+Jacky
+Lucky
+
+Predicates:
+book(x)
+knowledge_source(x)
+educational_material(x)
+valuable_resource(x
+
+Q5): Dogs and Pets
+Statements:
+
+Tommy, Bobby, Jacky, Lucky are dogs.
+Every dog is a pet.
+
+If 𝑥 is a cat → 𝑥  is an animal.
+
+Peter is a dog.
+Every pet is loved by Tommy.
+Predicates:
+
+dog(x)
+pet(x)
+cat(x)
+animal(x)
+loved_by(x, Tommy)
+
+Facts:
+
+prolog
+dog(tommy).
+dog(bobby).
+dog(jacky).
+dog(lucky).
+dog(peter).
+Rules:
+
+prolog
+pet(X) :- dog(X).
+animal(X) :- cat(X).
+loved_by(X, tommy) :- pet(X).
+
+
+Q6) Subjects and Resources
+Statements:
+
+Maths, Physics, Chemistry, Computer are subjects.
+Every subject has books.
+
+If 𝑥 is a book → 𝑥 is a knowledge source.
+
+If  𝑥 is a knowledge source → 𝑥 is educational material.
+
+If 𝑥 is educational material → 𝑥 is a valuable resource.
+
+Predicates:
+
+subject(x)
+books(x)
+knowledge_source(x)
+educational_material(x)
+valuable_resource(x)
+
+Facts:
+
+prolog
+subject(maths).
+subject(physics).
+subject(chemistry).
+subject(computer).
+Rules:
+
+prolog
+books(X) :- subject(X).
+knowledge_source(X) :- books(X).
+educational_material(X) :- knowledge_source(X).
+valuable_resource(X) :- educational_material(X)
+
+
+
+
+Q7)Family Program
+Facts:
+Family members: John, Mike, David, Lesa, Susan, Anna
+
+Define:
+
+male(X)
+female(X)
+parent(Y, X)
+
+Rules:  
+a) If 𝑥 is male and 𝑦 is parent of  𝑥  → father(y, x)
+b) If 𝑥 is female and 𝑦 is parent of  𝑥 → mother(y, x)
+
+Queries:  
+a) Check if John is father of Mike
+b) Check if Susan is mother of Mike
+c) Find the mother of David
+d) Find the father of Lesa
+e) List all mothers
+
+Family Tree Program
+Facts:
+
+prolog
+male(john).
+male(mike).
+male(jake).
+
+female(susan).
+female(mary).
+female(anna).
+
+parent(john, mike).
+parent(john, susan).
+parent(susan, jake).
+parent(mike, mary).
+parent(anna, jake).
+Rules:
+
+prolog
+father(F, C) :- male(F), parent(F, C).
+mother(M, C) :- female(M), parent(M, C).
+grandparent(Gp, C) :- parent(Gp, P), parent(P, C).
+sibling(X, Y) :- parent(P, X), parent(P, Y), X \= Y.
+Queries and Results:
+parent(john, mike). → True
+
+parent(susan, jake). → True
+
+sibling(mike, susan). → True
