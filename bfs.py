@@ -1,0 +1,84 @@
+import collections
+
+
+def BFS(graph, root):
+    seen, queue = set([root]), collections.deque([root])
+
+    while queue:
+        vertex = queue.popleft()
+        visit(vertex)
+
+        for node in graph[vertex]:
+            if node not in seen:
+                seen.add(node)
+                queue.append(node)
+
+
+def allpath(st, end, gr):
+    todo = [(st, [st])]
+
+    while len(todo):
+        node, path = todo.pop(0)
+
+        for next_node in gr[node]:
+            if next_node in path:
+                continue
+
+            print("Ideal Solutions")
+
+            if next_node == end:
+                yield path + [next_node]
+            else:
+                todo.append((next_node, path + [next_node]))
+
+
+def visit(n):
+    print(n)
+
+
+def bfs_shortest_path(graph, source, destination):
+    checked = []
+    queue = [[source]]
+
+    if source == destination:
+        return "SOURCE IS DESTINATION :"
+
+    while queue:
+        path = queue.pop(0)
+        node = path[-1]
+
+        if node not in checked:
+            neighbours = graph[node]
+
+            for neighbour in neighbours:
+                new_path = list(path)
+                new_path.append(neighbour)
+                queue.append(new_path)
+
+                if neighbour == destination:
+                    return new_path
+
+            checked.append(node)
+
+    return "PATH DOESN'T EXIST :"
+
+
+graph = {
+    'A': ['B', 'D'],
+    'B': ['C', 'F'],
+    'C': ['E', 'G'],
+    'G': ['E'],
+    'E': ['B', 'F'],
+    'F': ['A'],
+    'D': ['F'],
+}
+
+print("GRAPH TRAVERSAL:")
+
+BFS(graph, 'A')
+
+print("\n\nall paths is")
+
+[print(x) for x in allpath('A', 'E', graph)]
+
+print("In Shortest path of graph is :", bfs_shortest_path(graph, 'A', 'E'))
